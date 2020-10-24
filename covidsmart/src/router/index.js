@@ -4,7 +4,7 @@ import Router from 'vue-router'
 import home from '@/components/home'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
-import dashboard from '@/components/Dashboard'
+import Dashboard from '@/components/Dashboard'
 
 Vue.use(Router)
 
@@ -29,9 +29,9 @@ export default new Router({
     },
 
     {
-      path: '/',
-      name: 'dashboard',
-      component: dashboard
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard
     },
    
   ]

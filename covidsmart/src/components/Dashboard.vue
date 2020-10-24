@@ -91,7 +91,6 @@
 
 <script>
 import Sidebar from '@/components/Sidebar'
-var Chart = require('@/vendor/chartJS/Chart.js')
 import init from "@/components/init";
 import firebase from "firebase";
 
