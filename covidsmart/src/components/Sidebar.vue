@@ -5,7 +5,7 @@
  
 
     	<div class="sidebar-wrapper">
-            <p style="padding-top: 10px; margin-left: -40%">CovidSmart</p>
+            <p style="margin-top: 10px; margin-left: -50%">CovidSmart</p>
 
             <ul class="nav">
                 <li >
