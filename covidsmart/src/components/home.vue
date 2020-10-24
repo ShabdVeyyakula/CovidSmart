@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <a href="/login" style="text-decoration: none; color: #898989; margin-left: 90%;">Login/Signup</a>
+    <router-link to="/login"  href="/login" style="text-decoration: none; color: #898989; margin-left: 90%;">Login/Signup</router-link>
 
     <div style="margin-left: 15%">
       <div style="margin-top: 13%">
@@ -11,7 +11,7 @@
 
         <p style="text-align: left; width: 40%; color: #797979">With CovidSmart keep track of where you go and what people you encounter, so you can keep yourself safe! Get started today!</p>
 
-        <button style="margin-left: -89%; margin-top: 1%" class="start-btn">Get started</button>
+        <router-link to="/login" style="margin-left: -89%; margin-top: 1%" class="start-btn" tag="button">Get started</router-link>
       </div>
     </div>
 
