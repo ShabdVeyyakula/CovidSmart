@@ -1,122 +1,167 @@
 <template>
+  <div>
+    <Sidebar />
+    <div id="container-body-main">
+      <h1
+        style="z-index: 9999; position: relative; font-size: 35px; margin-left: 70%"
+        class="badge badge-danger">COVID Hotspots</h1>
 
-    <div>
-        <Sidebar />
-
-        <div id="container-body-main" >
-            <h1 class="my-4" style="text-align: left; color: #8a8e96">Dashboard</h1>
-            <hr>
-
-
-          <div class="row">
-
-        <div class="col-xl-3 col-md-6 mb-4" style="background-color: #8e9297
-
-">
-              <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Encounters(Today)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ today }}</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            
-
-            
-          </div>
-
-            
-
-
-
-        </div>
-
-
+      <div class="google-map" id="map1"></div>
     </div>
+  </div>
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar'
+import Sidebar from "@/components/Sidebar";
 import firebase from "firebase";
+import firebaseInit from '@/firebase.js'
 
 export default {
-    name: 'Dashboard',
-    components: {
-        Sidebar,
-    },
-    data() {
-        return {
-          encountersToday: [],
-          today: null,
-          data: [],
+  name: "Maps",
+  components: {
+    Sidebar
+  },
+  data() {
+    return {
+      lat: 0,
+      lng: 0,
+      map: null
+    };
+  },
 
+  methods: {
+    renderMap() {
+      var map = new google.maps.Map(document.getElementById("map1"), {
+        center: { lat: this.lat, lng: this.lng },
+        zoom: 14,
+        maxZoom: 25,
+        minZoom: 3,
+        streetViewControl: true
+      });
+
+            firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          var email = user.email;
+
+          firebase.firestore().collection("Logs").where("city", "==", email).onSnapshot(snapshot => {
+              snapshot.forEach(doc => {
+                var data = doc.data();
+                console.log(data);
+
+                var encounterLocations = data["coords"];
+
+
+                 var markers = [
+
+      ]
+
+            for(let i = 0; i <= encounterLocations.length; i++){
+
+          if(encounterLocations[i] != undefined){
+
+            var latitude = encounterLocations[i]['lat']
+            var longitude = encounterLocations[i]['lng']
+
+            if(latitude != undefined && longitude != undefined){
+              //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
+              var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
+
+              var marker = new google.maps.Marker({
+                position: latLng
+              });
+
+              markers.push(marker)
+            }
+          }
+
+      }
+
+      console.log(markers)
+
+
+// Path for cluster icons to be appended (1.png, 2.png, etc.)
+const imagePath = "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m";
+
+// Enable marker clustering for this map and these markers
+const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath});
+      
+
+              });
+            });
         }
-    },
-
-    beforeMount() {
-      this.getTodayEncounters()
-    },
-
-    methods: {
-      getTodayEncounters() {
-        
-
-        firebase.auth().onAuthStateChanged(user => {
-          if (user) {
-            console.log(user);
-            var name = user.displayName;
-            var email = user.email;
-            
-            
-
-        firebase.firestore().collection('Users').doc(email).get().then(snapshot => {
-              
-                let data = snapshot.data();
-                let today = data['totalencounters']
-                this.today = today
-                this.encountersToday.push(data)
-              
-
-            })
-
-        firebase.firestore().collection('Logs').where('email', '==', email).get().then(snapshot => {
-          snapshot.forEach(doc => {
-                let data = doc.data();
-                //this.today = today
-                this.data.push(data)
-
-          })
-              
-                
-              
-
-            })
-      } else {
-        console.log("Logged out");
-         this.$router.push({ path: 'Login' })
-      }
-      })
-        
-      }
-    },
+      });
 
     
-}
+    },
+
+    getCurrentLocation(){
+
+      const options = {
+      provider: 'google',
+      apiKey: 'AIzaSyDtOQLNJPBCPK5QCiwl0jle9yWRFLN3SyQ', // for Mapquest, OpenCage, Google Premier
+      formatter: null // 'gpx', 'string', ...
+    }
+
+
+
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition)
+      } 
+    },
+
+    async showPosition(position) {
+
+      const geocoder = new google.maps.Geocoder();
+
+      console.log(position.coords)
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+
+        const latlng = {
+    lat: parseFloat(this.lat),
+    lng: parseFloat(this.lng),
+  };
+  geocoder.geocode({ location: latlng }, (results, status) => {
+    if (status === "OK") {
+      if (results[0]) {
+        console.log(results)
+
+      } else {
+        window.alert("No results found");
+      }
+    } else {
+      window.alert("Geocoder failed due to: " + status);
+    }
+  });
+
+      //const res = await geocoder.geocode(latlng);
+
+      //console.log(res)
+
+      this.renderMap();
+    },
+
+  },
+
+  mounted() {
+    this.getCurrentLocation()
+  }
+};
 </script>
 
 <style>
-
-#container-body-main{
-    margin-left: 253px; 
-    margin-top: 3%
+#container-body-main {
+  margin-top: 3%;
 }
-
+.google-map {
+  width: 86%;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+  position: absolute;
+  top: 0%;
+  left: 223px;
+  z-index: 99;
+}
 </style>

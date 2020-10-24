@@ -22,7 +22,7 @@
                     <a href="">
                         <i class=""></i>
                         <router-link :to="{name: 'Maps'}" style="color: white">
-                            <p>Maps </p>
+                            <p>Encounter Map </p>
                         </router-link>
                         
                     </a>
