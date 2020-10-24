@@ -19,4 +19,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+    @import './assets/css/now-ui-dashboard.css';
+    @import './assets/css/now-ui-dashboard.min.css';
+    @import './assets/css/now-ui-dashboard.css.map'
 </style>
