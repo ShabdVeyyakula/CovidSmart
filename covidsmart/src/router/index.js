@@ -5,6 +5,7 @@ import home from '@/components/home'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Dashboard from '@/components/Dashboard'
+import Maps from '@/components/Maps'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       component: Dashboard
     },
    
+    {
+      path: '/maps',
+      name: 'Maps',
+      component: Maps
+    },
   ]
 })
 
