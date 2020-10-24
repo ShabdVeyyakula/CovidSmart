@@ -1,8 +1,6 @@
 <template>
   <div id="app">
 
-      /* eslint-disable */
-
     <router-link to="/login"  href="/login" style="text-decoration: none; color: #898989; margin-left: 90%;">Login/Signup</router-link>
 
     <div style="margin-left: 15%">
