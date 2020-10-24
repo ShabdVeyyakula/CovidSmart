@@ -1,15 +1,19 @@
 <template>
   <div id="app">
 
+    <div class="row">
     <router-link to="/login"  href="/login" style="text-decoration: none; color: #898989; margin-left: 90%;">Login/Signup</router-link>
+    </div>
+
+
 
     <div style="margin-left: 15%">
       <div style="margin-top: 13%">
-        <h1 style="font-size: 70px; text-align: left; color: #898989">Stay Distant <br> Stay <strong>Safe</strong> </h1>
+        <h1 style="font-size: 70px; text-align: left; color: #8a8e96; font-weight: 500">Stay Distant, <br> Stay <strong>Safe</strong> </h1>
 
         <h1 style="text-align: left; color: #9C6DFF; font-weight: 700; margin-top: 2%">CovidSmart</h1>
 
-        <p style="text-align: left; width: 40%; color: #797979">With CovidSmart keep track of where you go and what people you encounter, so you can keep yourself safe! Get started today!</p>
+        <p style="text-align: left; width: 35%; color: #565c65; font-size: 18px">With CovidSmart keep track of where you go and what people you encounter, so you can keep yourself safe! Get started today!</p>
 
         <router-link to="/login" style="margin-left: -89%; margin-top: 1%" class="start-btn" tag="button">Get started</router-link>
       </div>
