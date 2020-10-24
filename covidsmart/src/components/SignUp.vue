@@ -42,6 +42,7 @@
 <script>
 import firebase from 'firebase'
 import Vue from 'vue'
+import init from '@/firebase'
 
 export default {
   name: 'Signup',
