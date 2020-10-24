@@ -9,7 +9,7 @@
 
     <div style="margin-left: 15%">
       <div style="margin-top: 13%">
-        <h1 style="font-size: 70px; text-align: left; color: #8a8e96; font-weight: 500">Stay Distant, <br> Stay <strong>Safe</strong> </h1>
+        <h1 style="font-size: 70px; text-align: left; color: #8a8e96; font-weight: 600">Stay Distant, <br> Stay <strong>Safe</strong> </h1>
 
         <h1 style="text-align: left; color: #9C6DFF; font-weight: 700; margin-top: 2%">CovidSmart</h1>
 
