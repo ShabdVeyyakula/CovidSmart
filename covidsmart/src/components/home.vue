@@ -1,0 +1,66 @@
+<template>
+  <div id="app">
+
+    <a href="/login" style="text-decoration: none; color: #898989; margin-left: 90%;">Login/Signup</a>
+
+    <div style="margin-left: 15%">
+      <div style="margin-top: 13%">
+        <h1 style="font-size: 70px; text-align: left; color: #898989">Stay Distant <br> Stay <strong>Safe</strong> </h1>
+
+        <h1 style="text-align: left; color: #9C6DFF; font-weight: 700; margin-top: 2%">CovidSmart</h1>
+
+        <p style="text-align: left; width: 40%; color: #797979">With CovidSmart keep track of where you go and what people you encounter, so you can keep yourself safe! Get started today!</p>
+
+        <button style="margin-left: -89%; margin-top: 1%" class="start-btn">Get started</button>
+      </div>
+    </div>
+
+  
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'home',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.start-btn{
+  background-color: #9C6DFF;
+  color: white;
+  height: 45px;
+  width: 160px;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+
+}
+
+.start-btn:hover{
+  background-color: #7841ec;
+  color: white;
+  border-radius: 20px;
+}
+
+.start-btn:focus{
+  outline: none;
+  border: none;
+
+}
+</style>
