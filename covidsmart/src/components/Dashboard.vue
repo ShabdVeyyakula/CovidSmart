@@ -4,8 +4,7 @@
         <Sidebar />
 
         <div id="container-body-main" >
-            <h1 class="my-4">Dashboard
-      </h1>
+            <h1 class="my-4" style="text-align: left; color: #8a8e96">Dashboard</h1>
             <hr>
 
 

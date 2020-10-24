@@ -1,8 +1,6 @@
 <template>
   <div class="login">
 
-    <div class="row">
-       <div style="width: 200px"></div>
       <div class="col" style="margin-top:60px">
         <div>
           <h1 style="font-weight: bold; margin-top: 40px; font-size: 60px; color: white;" class="title">Hello,<br> Welcome</h1>
@@ -33,9 +31,7 @@
           </div>
       </div>
       </div>
-      
-    </div>
-  
+        
    </div>
 </template>
 

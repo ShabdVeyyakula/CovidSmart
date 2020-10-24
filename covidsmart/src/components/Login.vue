@@ -1,8 +1,5 @@
 <template>
   <div class="login">
-
-    <div class="row">
-      <div style="width: 240px"></div>
       
       <div class="col" style="margin-top:60px">
         <div >
@@ -37,7 +34,7 @@
       </div>
       </div>
       
-    </div>
+
   
    </div>
 </template>

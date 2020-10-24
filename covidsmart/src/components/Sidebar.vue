@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper" style="position: fixed">
-        <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg" style="position: fixed">
+        <div class="sidebar" data-color="purple" style="position: fixed">
 
  
 
