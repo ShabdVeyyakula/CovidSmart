@@ -5,9 +5,7 @@
  
 
     	<div class="sidebar-wrapper">
-            <div class="logo">
-                CovidSmart
-            </div>
+            <p style="padding-top: 10px; margin-left: -40%">CovidSmart</p>
 
             <ul class="nav">
                 <li >

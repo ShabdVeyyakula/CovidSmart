@@ -4,7 +4,7 @@
     <div id="container-body-main">
       <h1
         style="z-index: 9999; position: relative; font-size: 35px; margin-left: 70%"
-        class="badge badge-danger">Encounter History</h1>
+        class="badge badge-primary">Encounter History</h1>
 
       <div class="google-map" id="map1"></div>
     </div>
@@ -23,8 +23,8 @@ export default {
   },
   data() {
     return {
-      lat: 37.7923135,
-      lng: -121.5523,
+      lat: 0,
+      lng: 0,
       map: null
     };
   },
@@ -33,8 +33,8 @@ export default {
     renderMap() {
       var map = new google.maps.Map(document.getElementById("map1"), {
         center: { lat: this.lat, lng: this.lng },
-        zoom: 10,
-        maxZoom: 20,
+        zoom: 14,
+        maxZoom: 25,
         minZoom: 3,
         streetViewControl: true
       });
@@ -43,12 +43,12 @@ export default {
         if (user) {
           var email = user.email;
 
-          firebase.firestore().collection("Logs").where("email", "==", email).get().then(snapshot => {
+          firebase.firestore().collection("Logs").where("email", "==", email).onSnapshot(snapshot => {
               snapshot.forEach(doc => {
                 var data = doc.data();
                 console.log(data);
 
-                var encounterLocations = data["location"]["coords"];
+                var encounterLocations = data["coords"];
 
 
                  var markers = [
@@ -59,25 +59,24 @@ export default {
 
           if(encounterLocations[i] != undefined){
 
-          var latitude = encounterLocations[i]['lat']
-          var longitude = encounterLocations[i]['lng']
+            var latitude = encounterLocations[i]['lat']
+            var longitude = encounterLocations[i]['lng']
 
-          if(latitude != undefined && longitude != undefined){
-         //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
-var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
-          var marker = new google.maps.Marker({
-            position: latLng
-          });
+            if(latitude != undefined && longitude != undefined){
+              //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
+              var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
 
-          markers.push(marker)
-          }
+              var marker = new google.maps.Marker({
+                position: latLng
+              });
+
+              markers.push(marker)
+            }
           }
 
       }
 
       console.log(markers)
-
-
 
 
 // Path for cluster icons to be appended (1.png, 2.png, etc.)
@@ -95,24 +94,36 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
     
     },
 
-    getMapData() {
+    getCurrentLocation(){
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition);
 
-    }
+
+      } 
+    },
+
+    showPosition(position){
+      console.log(position.coords)
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+
+      this.renderMap();
+    },
+
   },
 
   mounted() {
-    this.renderMap()
+    this.getCurrentLocation()
   }
 };
 </script>
 
 <style>
 #container-body-main {
-  margin-left: 253px;
   margin-top: 3%;
 }
 .google-map {
-  width: 100%;
+  width: 86%;
   height: 100%;
   margin: 0 auto;
   background: #fff;
