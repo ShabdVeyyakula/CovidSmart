@@ -71,6 +71,7 @@ export default {
 
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
+            console.log(user);
             var name = user.displayName;
             var email = user.email;
             
@@ -89,7 +90,7 @@ export default {
         firebase.firestore().collection('Logs').where('email', '==', email).get().then(snapshot => {
           snapshot.forEach(doc => {
                 let data = doc.data();
-                this.today = today
+                //this.today = today
                 this.data.push(data)
 
           })
@@ -98,6 +99,9 @@ export default {
               
 
             })
+      } else {
+        console.log("Logged out");
+         this.$router.push({ path: 'Login' })
       }
       })
         

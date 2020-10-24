@@ -38,6 +38,16 @@
                         
                     </a>
                 </li>
+
+                 <li>
+                    <a href="" @click="logout()">
+                        <i class=""></i>
+                        <p style="color: white">
+                            Logout
+                        </p>
+                        
+                    </a>
+                </li>
                 
                 
 				
@@ -49,6 +59,8 @@
 
 <script>
 
+import firebase from "firebase";
+
 export default {
 
     name: 'Sidebar',
@@ -56,6 +68,15 @@ export default {
     data() {
         return {
 
+        }
+    }, 
+    methods: {
+        logout(){
+            firebase.auth().signOut().then(() => {
+                this.$router.push({ path: 'Login' })
+            }).catch(e => {
+                console.log(e);
+            })
         }
     }
     
