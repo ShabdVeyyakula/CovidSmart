@@ -2,16 +2,11 @@
     <div class="wrapper" style="position: fixed">
         <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg" style="position: fixed">
 
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
+ 
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                COVID NETWORK
+                CovidSmart
             </div>
 
             <ul class="nav">
@@ -35,14 +30,7 @@
                     </a>
                 </li>
                 
-                <li>
-                    <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <router-link :to="{name: 'News'}" style="color: white">
-                            <p style="text-align: center">Health News</p>
-                        </router-link>
-                    </a>
-                </li>
+               
                 <li>
                     <a href="">
                         <i class=""></i>
@@ -52,23 +40,9 @@
                         
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <router-link :to="{name: 'Stats'}" style="color: white">
-                                <p style="text-align: center">COVID Stats</p>
-                            </router-link>
-                        
-                    </a>
-                </li>
                 
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <center></center>
-                        <p>Logout</p>
-                    </a>
-                </li>
+                
+				
             </ul>
     	</div>
     </div>
@@ -76,8 +50,7 @@
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 export default {
 
     name: 'Sidebar',
@@ -108,7 +81,7 @@ export default {
     bottom: 0;
     right: auto;
     left: 0;
-    width: 260px;
+    width: 290px;
     display: block;
     z-index: 1;
     color: #fff;
@@ -122,7 +95,7 @@ export default {
     max-height: calc(100vh - 75px);
     min-height: 100%;
     overflow: auto;
-    width: 260px;
+    width: 290px;
     z-index: 4;
     padding-bottom: 100px;
 }
@@ -169,7 +142,7 @@ export default {
     border: 1px solid #333;
     display: block;
     height: 61px;
-    width: 61px;
+    width: 30px;
     float: left;
     overflow: hidden;
 }
@@ -193,7 +166,7 @@ export default {
 
 .sidebar .nav li > a {
     color: #FFFFFF;
-    margin: 5px 15px;
+    margin: 5px 30px;
     opacity: .86;
     border-radius: 4px;
     display: block;
@@ -359,21 +332,39 @@ export default {
     background: #FF7070;
     background: -moz-linear-gradient(top, #FF7070 0%, #FF7070 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FB404B), color-stop(100%, #FF7070));
-    background: -webkit-linear-gradient(top, #FF7070 0%, #FF7070 100%);
-    background: -o-linear-gradient(top, #FB40#FF7070 0%, #FF7070 100%);
-    background: -ms-linear-gradient(top, #FF7070 0%, #FF7070 100%);
-    background: linear-gradient(to bottom, #FF7070 0%, #FF7070 100%);
+    background: -webkit-linear-gradient(top, #FF7070 0%,#36393f
+ 100%);
+    background: -o-linear-gradient(top,#36393f
+ 0%,#36393f 100%);
+    background: -ms-linear-gradient(top,#36393f
+ 0%,#36393f 100%);
+    background: linear-gradient(to bottom,#36393f
+ 0%, #9C6DFF
+ 100%);
     background-size: 150% 150%;
 }
 
 .sidebar[data-color="purple"]:after {
-    background: #FF7070;
-    background: -moz-linear-gradient(top, #FF7070 0%, #FF7070 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FF7070), color-stop(100%, #FF7070));
-    background: -webkit-linear-gradient(top, #FF7070 0%, #FF7070 100%);
-    background: -o-linear-gradient(top, #FF7070 0%, #FF7070 100%);
-    background: -ms-linear-gradient(top, #FF7070 0%, #FF7070 100%);
-    background: linear-gradient(to bottom, #fc2803 0%, #fc2803 100%);
+    background: #36393f
+;
+    background: -moz-linear-gradient(top,#36393f
+ 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#36393f
+), color-stop(100%, #36393f
+));
+    background: -webkit-linear-gradient(top, #36393f
+ 0%, #36393f
+ 100%);
+    background: -o-linear-gradient(top, #36393f
+ 0%,#36393f
+ 100%);
+    background: -ms-linear-gradient(top,#36393f
+ 0%,#36393f
+ 100%);
+    background: linear-gradient(to bottom, #36393f
+ 0%,#36393f
+
+ 100%);
     background-size: 150% 150%;
 }
 
