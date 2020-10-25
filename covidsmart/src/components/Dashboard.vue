@@ -30,10 +30,10 @@ export default {
   },
 
   methods: {
-    renderMap() {
+    renderMap(county) {
       var map = new google.maps.Map(document.getElementById("map1"), {
         center: { lat: this.lat, lng: this.lng },
-        zoom: 14,
+        zoom: 10,
         maxZoom: 25,
         minZoom: 3,
         streetViewControl: true
@@ -43,17 +43,28 @@ export default {
         if (user) {
           var email = user.email;
 
-          firebase.firestore().collection("Logs").where("city", "==", email).onSnapshot(snapshot => {
+         var markers = []
+
+          console.log(county)
+
+          firebase.firestore().collection("Logs").where("county", "==", county).onSnapshot(snapshot => {
+   
+              google.maps.Map.prototype.clearMarkers = () => {
+                for (var i = 0; i < markers.length; i++ ) {
+                  markers[i].setMap(null);
+                }
+                this.markers = new Array();
+              }
+
+
+              markers = []
+
               snapshot.forEach(doc => {
                 var data = doc.data();
                 console.log(data);
 
                 var encounterLocations = data["coords"];
 
-
-                 var markers = [
-
-      ]
 
             for(let i = 0; i <= encounterLocations.length; i++){
 
@@ -79,17 +90,21 @@ export default {
       console.log(markers)
 
 
-// Path for cluster icons to be appended (1.png, 2.png, etc.)
+
+      
+
+              })
+                // Path for cluster icons to be appended (1.png, 2.png, etc.)
 const imagePath = "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m";
 
 // Enable marker clustering for this map and these markers
 const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath});
-      
-
-              });
+              
             });
         }
       });
+
+
 
     
     },
@@ -122,10 +137,19 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
     lat: parseFloat(this.lat),
     lng: parseFloat(this.lng),
   };
+
+  var county;
   geocoder.geocode({ location: latlng }, (results, status) => {
     if (status === "OK") {
       if (results[0]) {
         console.log(results)
+
+        county = results[2]["address_components"][0]['long_name']
+
+        console.log(county)
+
+        
+      this.renderMap(county);
 
       } else {
         window.alert("No results found");
@@ -139,7 +163,6 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
 
       //console.log(res)
 
-      this.renderMap();
     },
 
   },
