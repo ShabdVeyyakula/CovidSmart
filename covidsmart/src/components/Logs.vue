@@ -61,6 +61,8 @@ export default {
                 var latitude = coords["lat"];
                 var longitude = coords["lng"];
 
+                var address = data['street']
+
                 if (latitude != undefined && longitude != undefined) {
                   //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
                   var location = {
@@ -68,17 +70,7 @@ export default {
                     lng: parseFloat(longitude)
                   };
 
-                  const geocoder = new google.maps.Geocoder();
-
-                  geocoder.geocode({ location: location }, (results, status) => {
-                    if (status === "OK") {
-                      if (results[0]) {
-                        console.log(results);
-
-                        var address =
-                          results[1]["address_components"][1]["long_name"];
-
-                            var logHTML = `
+                  var logHTML = `
              <div class="log-card" style = 'margin-top: 20px'>
 
                 <div class = 'row' style = 'margin-left: 2%; padding-top: 20px;'>
@@ -106,13 +98,29 @@ export default {
 
                         console.log(address);
 
+                  /*
+
+                  const geocoder = new google.maps.Geocoder();
+
+                  geocoder.geocode({ location: location }, (results, status) => {
+                    if (status === "OK") {
+                      if (results[0]) {
+                        console.log(results);
+
+                        var address =
+                          results[1]["address_components"][1]["long_name"];
+
+                            
+
                       } else {
-                        window.alert("No results found");
+                        console.log("No results found");
                       }
                     } else {
-                      window.alert("Geocoder failed due to: " + status);
+                     console.log("Geocoder failed due to: " + status);
                     }
                   });
+
+                  */
 
                 
                 }
