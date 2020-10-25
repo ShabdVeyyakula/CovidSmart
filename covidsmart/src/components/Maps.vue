@@ -15,7 +15,7 @@
               <div class="mostEncounters shadow" style="width: 280px; height: 100px; background-color: #67eba3; margin-top: 40px; border-radius: 10px">
                 <center>
                   <div class="col">
-                    <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">{{ county }}</h3>
+                    <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">San Joaquin County</h3>
                     <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px">Encounter Data</h5>
                   </div>
                 </center>
@@ -112,6 +112,8 @@ export default {
 
                     firebase.firestore().collection("Trips").where("email", "==", email).onSnapshot(snapshot => {
                       totalTrips = 0
+                      tripsToday = 0
+                      console.log(totalTrips)
                       snapshot.forEach(doc => {
                         var data = doc.data();
 
@@ -126,6 +128,8 @@ export default {
                           }
 
                           totalTrips += 1;
+
+                          console.log(totalTrips)
 
                           
               document.getElementById('trips-count').innerHTML = totalTrips

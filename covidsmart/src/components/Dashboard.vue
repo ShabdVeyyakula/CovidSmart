@@ -4,7 +4,7 @@
     <div id="container-body-main">
       <h1
         style="z-index: 9999; position: relative; font-size: 35px; margin-left: 70%"
-        class="badge badge-danger">COVID Hotspots <br> <p style = 'font-size: 15px; margin-top: 2px; margin-bottom: -3px'>{{ county }}</p></h1>
+        class="badge badge-danger">COVID Hotspots <br> <p style = 'font-size: 15px; margin-top: 2px; margin-bottom: -3px'>San Joaquin County</p></h1>
 
                 <div style="height: 600px; width: 350px; background-color: white; position: relative; margin-left: 76%; z-index: 9999; margin-top: 40px" class="userStats">
 
