@@ -4,8 +4,7 @@
     <div id="container-body-main">
       <h1
         style="z-index: 9999; position: relative; font-size: 35px; margin-left: 70%"
-        class="badge badge-danger">COVID Hotspots</h1>
-
+        class="badge badge-danger">COVID Hotspots <br> <p style = 'font-size: 15px; margin-top: 2px; margin-bottom: -3px'>{{ county }}</p></h1>
       <div class="google-map" id="map1"></div>
     </div>
   </div>
@@ -25,7 +24,8 @@ export default {
     return {
       lat: 0,
       lng: 0,
-      map: null
+      map: null,
+      county: null,
     };
   },
 
@@ -145,6 +145,7 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
         county = results[2]["address_components"][0]['long_name']
 
         console.log(county)
+        this.county = county
 
         
       this.renderMap(county);
