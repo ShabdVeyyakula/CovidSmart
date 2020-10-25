@@ -2,7 +2,7 @@
   <div>
     <Sidebar />
     <div id="container-body-main">
-      <h1 style="margin-left: -50%; margin-right: -120px" id = 'logs-count'></h1>
+      <h1 style="margin-left: -50%; margin-right: -120px; color: white" id = 'logs-count'></h1>
 
       <div id="logs-doc" ></div>
     </div>
