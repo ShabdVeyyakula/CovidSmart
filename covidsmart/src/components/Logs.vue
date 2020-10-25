@@ -47,17 +47,12 @@ export default {
                 var data = doc.data();
                 console.log(data);
 
-                var encounterLocations = data["coords"];
-
                 var time = data['time']
 
+                var coords = data['coords']
 
-            for(let i = 0; i <= encounterLocations.length; i++){
-
-          if(encounterLocations[i] != undefined){
-
-            var latitude = encounterLocations[i]['lat']
-            var longitude = encounterLocations[i]['lng']
+                var latitude = coords['lat']
+                var longitude = coords['lng']
 
             if(latitude != undefined && longitude != undefined){
               //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
@@ -71,10 +66,9 @@ export default {
 
               $(logHTML).appendTo('#logs-doc');
             }
-          }
+        
 
-      }
-              })
+                    })
               
             })
 
