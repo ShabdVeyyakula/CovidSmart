@@ -50,8 +50,8 @@
                 <div style="width: 34px"></div>
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #8fbcff; border-radius: 10px">
-                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">73</h1>
-                    <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px; font-size: 14px">Most Encounters</h6>
+                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'encounters-count'>0</h1>
+                    <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px; font-size: 14px">Total Encounters</h6>
                   </div>
                 </center>
                 <div class="tripsComplete"></div>
@@ -86,7 +86,7 @@ export default {
       lat: 0,
       lng: 0,
       map: null,
-      county: null
+      county: null,
     };
   },
 
@@ -103,6 +103,8 @@ export default {
             firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           var email = user.email;
+
+          var totalEncounters = 0;
 
           firebase.firestore().collection("Logs").where("email", "==", email).onSnapshot(snapshot => {
               snapshot.forEach(doc => {
@@ -123,6 +125,8 @@ export default {
             if(latitude != undefined && longitude != undefined){
               //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
               var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
+
+              totalEncounters += 1
 
               var marker = new google.maps.Marker({
                 position: latLng
@@ -145,6 +149,8 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
       
 
               });
+
+              document.getElementById('encounters-count').innerHTML = totalEncounters
             });
         }
       });
