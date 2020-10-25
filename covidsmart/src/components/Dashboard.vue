@@ -112,7 +112,7 @@ export default {
 
              var totalTrips = 0;
 
-                    firebase.firestore().collection("Trips").where("email", "==", email).onSnapshot(snapshot => {
+                    firebase.firestore().collection("Trips").onSnapshot(snapshot => {
                       totalTrips = 0
                       snapshot.forEach(doc => {
                         var data = doc.data();
