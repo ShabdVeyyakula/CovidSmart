@@ -16,7 +16,7 @@
                 <center>
                   <div class="col">
                     <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">{{ county }}</h3>
-                    <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px">Most Encounters</h5>
+                    <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px"></h5>
                   </div>
                 </center>
               </div>
@@ -33,7 +33,7 @@
                 <div style="width: 34px"></div>
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #9c6dff; border-radius: 10px">
-                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">6</h1>
+                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'trips-count'>0</h1>
                     <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">Trips Complete</h6>
                   </div>
                 </center>
@@ -106,6 +106,23 @@ export default {
 
           var totalEncounters = 0;
 
+          var totalTrips = 0;
+
+                    firebase.firestore().collection("Trips").where("email", "==", email).onSnapshot(snapshot => {
+                      snapshot.forEach(doc => {
+                        var data = doc.data();
+
+                        if(data){
+                          totalTrips += 1;
+
+                          
+              document.getElementById('trips-count').innerHTML = totalTrips
+
+                        }
+
+                      });
+                    })
+
           firebase.firestore().collection("Logs").where("email", "==", email).onSnapshot(snapshot => {
               snapshot.forEach(doc => {
                 var data = doc.data();
@@ -127,6 +144,8 @@ export default {
               var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
 
               totalEncounters += 1
+
+              document.getElementById('encounters-count').innerHTML = totalEncounters
 
               var marker = new google.maps.Marker({
                 position: latLng
@@ -150,7 +169,7 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
 
               });
 
-              document.getElementById('encounters-count').innerHTML = totalEncounters
+              
             });
         }
       });
