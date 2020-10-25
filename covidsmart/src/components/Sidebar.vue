@@ -33,7 +33,7 @@
                     <a href="">
                         <i class=""></i>
                         <router-link :to="{name: 'Logs'}" style="color: white">
-                            <p>Armed Log</p>
+                            <p>Encounter Logs</p>
                         </router-link>
                         
                     </a>

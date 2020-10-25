@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Dashboard from '@/components/Dashboard'
 import Maps from '@/components/Maps'
+import Logs from '@/components/Logs'
 
 Vue.use(Router)
 
@@ -39,6 +40,12 @@ export default new Router({
       path: '/maps',
       name: 'Maps',
       component: Maps
+    },
+
+    {
+      path: '/logs',
+      name: 'Logs',
+      component: Logs
     },
   ]
 })
