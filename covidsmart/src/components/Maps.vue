@@ -15,7 +15,7 @@
               <div class="mostEncounters shadow" style="width: 280px; height: 100px; background-color: #67eba3; margin-top: 40px; border-radius: 10px">
                 <center>
                   <div class="col">
-                    <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">Santa Clara</h3>
+                    <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">{{ county }}</h3>
                     <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px">Most Encounters</h5>
                   </div>
                 </center>
@@ -85,7 +85,8 @@ export default {
     return {
       lat: 0,
       lng: 0,
-      map: null
+      map: null,
+      county: null
     };
   },
 
@@ -164,7 +165,30 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
 
+      var location = {lat: this.lat, lng: this.lng}
+
+      const geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({ location: location }, (results, status) => {
+    if (status === "OK") {
+      if (results[0]) {
+        console.log(results)
+
+        this.county = results[2]["address_components"][0]['long_name']
+
+        console.log(this.county)
+
+        
       this.renderMap();
+
+      } else {
+        window.alert("No results found");
+      }
+    } else {
+      window.alert("Geocoder failed due to: " + status);
+    }
+  });
+
     },
 
   },
