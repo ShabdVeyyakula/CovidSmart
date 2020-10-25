@@ -16,7 +16,7 @@
                 <center>
                   <div class="col">
                     <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">{{ county }}</h3>
-                    <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px"></h5>
+                    <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px">Encounter Data</h5>
                   </div>
                 </center>
               </div>
@@ -43,8 +43,8 @@
               <div class="row" style="margin-left: 28px; margin-top: 30px">
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #febad3; border-radius: 10px">
-                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">13</h1>
-                    <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">Trip Average</h6>
+                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'trips-today'>0</h1>
+                    <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">Today's Trips</h6>
                   </div>
                 </center>
                 <div style="width: 34px"></div>
@@ -108,16 +108,28 @@ export default {
 
           var totalTrips = 0;
 
+          var tripsToday = 0;
+
                     firebase.firestore().collection("Trips").where("email", "==", email).onSnapshot(snapshot => {
                       totalTrips = 0
                       snapshot.forEach(doc => {
                         var data = doc.data();
 
                         if(data){
+
+                          var tripTime = new Date(data['end'].seconds * 1000)
+
+                          var today = new Date()
+
+                          if(tripTime.toLocaleDateString() == today.toLocaleDateString()){
+                            tripsToday += 1
+                          }
+
                           totalTrips += 1;
 
                           
               document.getElementById('trips-count').innerHTML = totalTrips
+              document.getElementById('trips-today').innerHTML = tripsToday
 
                         }
 

@@ -19,7 +19,7 @@
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #febad3; border-radius: 10px">
                     <center>
-                      <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">31</h1>
+                      <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'trips-count'></h1>
                     <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">Trip Total</h6>
                     </center>
                   </div>
@@ -27,7 +27,7 @@
                 <div style="width: 34px"></div>
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #8fbcff; border-radius: 10px">
-                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">18</h1>
+                    <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">0</h1>
                     <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">High Risk Trips</h6>
                   </div>
                 </center>
@@ -109,6 +109,25 @@ export default {
          var markers = []
 
           console.log(county)
+
+             var totalTrips = 0;
+
+                    firebase.firestore().collection("Trips").where("email", "==", email).onSnapshot(snapshot => {
+                      totalTrips = 0
+                      snapshot.forEach(doc => {
+                        var data = doc.data();
+
+                        if(data){
+                          totalTrips += 1;
+
+                          
+              document.getElementById('trips-count').innerHTML = totalTrips
+
+                        }
+
+                      });
+                    })
+
 
           firebase.firestore().collection("Logs").where("county", "==", "San Joaquin County").onSnapshot(snapshot => {
 
