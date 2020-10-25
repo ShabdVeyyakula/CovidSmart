@@ -2,9 +2,9 @@
   <div>
     <Sidebar />
     <div id="container-body-main">
-      <h1 style="margin-left: -50%">Encounter Logs</h1>
+      <h1 style="margin-left: -50%; margin-right: -120px" id = 'logs-count'></h1>
 
-      <div id="logs-doc"></div>
+      <div id="logs-doc" ></div>
     </div>
   </div>
 </template>
@@ -33,6 +33,10 @@ export default {
         if (user) {
           var email = user.email;
 
+          var today = new Date();
+
+          var todayEncounters = 0;
+
           firebase
             .firestore()
             .collection("Logs")
@@ -45,6 +49,12 @@ export default {
                 console.log(data);
 
                 var time = new Date(data["time"].seconds * 1000);
+
+                if(time.getDay() >= today.getDay()){
+                  todayEncounters += 1
+                }
+
+                console.log(todayEncounters)
 
                 var coords = data["coords"];
 
@@ -107,6 +117,10 @@ export default {
                 
                 }
               });
+
+              document.getElementById('logs-count').innerHTML = `Encounter Logs <span class = 'badge badge-light'>${todayEncounters} Today</span>`
+
+              console.log(todayEncounters)
             });
         }
       });
