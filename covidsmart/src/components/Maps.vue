@@ -25,7 +25,7 @@
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #ffe071; border-radius: 10px">
                     <center>
-                      <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">8.5</h1>
+                      <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'total-rating'></h1>
                     <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">Rating</h6>
                     </center>
                   </div>
@@ -185,6 +185,25 @@ const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath}
 
               
             });
+
+                        var rating = "";
+
+            setTimeout(function(){ 
+                if (totalTrips == 0){
+                  rating = 'S'
+                } else if( 5 > totalTrips > 0){
+                  rating = 'A'
+                } else if (9 > totalTrips > 4){
+                  rating = 'B'
+                } else if (15 > totalTrips > 8){
+                  rating = 'C'
+                } else {
+                  rating = "D"
+                }
+
+                document.getElementById('total-rating').innerHTML = rating;
+                
+            }, 2000);
         }
       });
 
