@@ -73,7 +73,6 @@ export default {
             var longitude = coords['lng']
 
             if(latitude != undefined && longitude != undefined){
-              //var myLatlng = new google.maps.LatLng({lat: Number(latitude), lng: Number(longitude)});
               var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
 
               var marker = new google.maps.Marker({
