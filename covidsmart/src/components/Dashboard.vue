@@ -31,7 +31,8 @@ export default {
 
   methods: {
     renderMap(county) {
-      var map = new google.maps.Map(document.getElementById("map1"), {
+
+            var map = new google.maps.Map(document.getElementById("map1"), {
         center: { lat: this.lat, lng: this.lng },
         zoom: 10,
         maxZoom: 25,
@@ -39,25 +40,19 @@ export default {
         streetViewControl: true
       });
 
+
+
             firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           var email = user.email;
+
+          console.log(email)
 
          var markers = []
 
           console.log(county)
 
-          firebase.firestore().collection("Logs").where("county", "==", county).onSnapshot(snapshot => {
-   
-              google.maps.Map.prototype.clearMarkers = () => {
-                for (var i = 0; i < markers.length; i++ ) {
-                  markers[i].setMap(null);
-                }
-                this.markers = new Array();
-              }
-
-
-              markers = []
+          firebase.firestore().collection("Logs").where("county", "==", "San Joaquin County").onSnapshot(snapshot => {
 
               snapshot.forEach(doc => {
                 var data = doc.data();
@@ -72,30 +67,29 @@ export default {
             var latitude = coords['lat']
             var longitude = coords['lng']
 
-            if(latitude != undefined && longitude != undefined){
+   
               var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
 
               var marker = new google.maps.Marker({
                 position: latLng
               });
 
+              console.log(latitude, longitude)
+
               markers.push(marker)
-            }
+            
           }
 
 
-      console.log(markers)
-
-
-
-      
-
               })
-                // Path for cluster icons to be appended (1.png, 2.png, etc.)
+                                        // Path for cluster icons to be appended (1.png, 2.png, etc.)
 const imagePath = "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m";
 
 // Enable marker clustering for this map and these markers
 const markerClusterer = new MarkerClusterer(map, markers, {imagePath: imagePath});
+
+
+
               
             });
         }
