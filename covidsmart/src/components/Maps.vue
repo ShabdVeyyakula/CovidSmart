@@ -94,7 +94,7 @@ export default {
     renderMap() {
       var map = new google.maps.Map(document.getElementById("map1"), {
         center: { lat: this.lat, lng: this.lng },
-        zoom: 14,
+        zoom: 13,
         maxZoom: 25,
         minZoom: 3,
         streetViewControl: true
