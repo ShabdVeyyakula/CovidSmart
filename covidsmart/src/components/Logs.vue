@@ -59,8 +59,13 @@ export default {
               var latLng = new google.maps.LatLng(Number(latitude), Number(longitude));
 
               var logHTML = `
-             <div class="log-card">
-                <p style="color: white">Log</p>
+             <div class="log-card" style = 'margin-top: 20px'>
+
+                <div class = 'row' style = 'margin-left: 2%; padding-top: 2%'>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p style="color: white">Log</p>
+                </div>
+
             </div>
               `
 
