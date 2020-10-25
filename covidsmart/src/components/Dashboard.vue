@@ -36,7 +36,7 @@
               <div class="mostEncounters shadow" style="width: 280px; height: 100px; background-color: #9c6dff; margin-top: 40px; border-radius: 10px">
                 <center>
                   <div class="col">
-                    <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">Santa Clara</h3>
+                    <h3 style="padding-top: 10px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white">{{ county }}</h3>
                     <h5 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 20px">Hot Spot</h5>
                   </div>
                 </center>

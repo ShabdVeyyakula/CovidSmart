@@ -109,6 +109,7 @@ export default {
           var totalTrips = 0;
 
                     firebase.firestore().collection("Trips").where("email", "==", email).onSnapshot(snapshot => {
+                      totalTrips = 0
                       snapshot.forEach(doc => {
                         var data = doc.data();
 
@@ -124,6 +125,7 @@ export default {
                     })
 
           firebase.firestore().collection("Logs").where("email", "==", email).onSnapshot(snapshot => {
+            totalEncounters = 0
               snapshot.forEach(doc => {
                 var data = doc.data();
                 console.log(data);
