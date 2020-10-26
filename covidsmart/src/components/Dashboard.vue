@@ -19,7 +19,7 @@
                 <center>
                   <div class="rating shadow" style="height: 120px; width: 120px; background-color: #febad3; border-radius: 10px">
                     <center>
-                      <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'trips-count'></h1>
+                      <h1 style="padding-top: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; color: white" id = 'trips-count'>0</h1>
                     <h6 style="color: white; font-weight: 300; font-family: 'Roboto', sans-serif; margin-top: 10px">Trip Total</h6>
                     </center>
                   </div>
@@ -127,6 +127,7 @@ export default {
 
                       });
                     })
+
 
 
           firebase.firestore().collection("Logs").where("county", "==", "San Joaquin County").onSnapshot(snapshot => {
